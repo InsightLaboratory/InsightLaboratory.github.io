@@ -137,11 +137,19 @@
 			position: absolute;
     		top: 15px;
     		right: 40px;
-  		}
-          .image:hover {
-	transform: scale(1.1);
-	transition: transform 0.2s ease-in-out;
-}
+			
+      /* Estilos de las imágenes expandidas */
+      img.expanded {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+
 
 
 		
@@ -238,6 +246,14 @@
 
 
 	</main>
+	    <script>
+        const images = document.querySelectorAll("img");
+        images.forEach((image) => {
+          image.addEventListener("click", () => {
+            image.classList.toggle("expanded");
+          });
+        });
+      </script>
 	
 	<script
 	src="https://utteranc.es/client.js"
