@@ -1,144 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <base target="_top">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Image Overlay Tutorial - Leaflet</title>
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
-
-    <!-- Leaflet CSS y JavaScript -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <!-- Estilos CSS adicionales -->
+	<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>InsightLab</title>
+		<link rel="shortcut icon" href="icono.png">
+		<link rel="stylesheet" href="estilos.css">
+	</head>
+    <!-- Estilos CSS -->
     <style>
-        html, body {
-            height: 100%;
+        /* Estilos del cuerpo del documento */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0F0F0;
             margin: 0;
+            padding: 0;
         }
 
-        .leaflet-container {
-            height: 600px; /* Ajuste la altura según sea necesario */
-            width: 800px; /* Ajuste el ancho según sea necesario */
-            max-width: 100%;
-            max-height: 100%;
-            margin: auto; /* Centra el mapa en la página */
+        /* Estilos del encabezado */
+        header {
+            background-color: #f8f8f8;
+            color: #FFFFFF;
+            padding: 10px;
+            text-align: left;
+            margin-bottom: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
         }
-    </style>
-</head>
+
+        /* Estilos del título */
+        h1 {
+            font-family: "Google Sans";
+            color: #837f7f;
+            font-weight: 200;
+            text-decoration: none;
+            font-size: 30px;
+            margin: 0;  
+        }
+
+        /* Estilos del contenido principal */
+        main {
+            margin-top:50px;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: justify;
+        }
+
+        /* Estilos de los subtítulos */
+        h2 {
+            font-family: "Google Sans";
+            font-size: 18px;
+            color: #424242;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos de las listas */
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+			padding-right: 20px;
+        }
+
+        /* Estilos de los elementos de las listas */
+        li {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos de los títulos de sección */
+        h3 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #3b78e7;   
+        }
+
+        /* Estilos de los párrafos */
+        p {
+            font-family: "Google Sans";
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            color: #424242
+        }
+
+        /* Estilos de las imágenes */
+        img {
+            margin: 10px auto;
+            max-width: 33%;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 10px;
+			
+        }
+
+        /* Estilos de los enlaces */
+        a {
+            color: #3b78e7;
+        }
+
+        /* Estilos del contenedor */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        /* Estilos del widget de comentarios */
+        div.utterances {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: justify;
+		}
+		.contact-link {
+    		font-family: "Google Sans";
+    		color: #837f7f;
+    		font-weight: 200;
+    		text-decoration: none;
+    		font-size: 18px;
+    		float: right;
+    		margin-left: 20px;
+			position: absolute;
+    		top: 15px;
+    		right: 40px;
+  		}
+
+      /* Estilos de las imágenes expandidas */
+      img.expanded {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+
+		
+
+	</style>
 
 <body>
+	<header>
+		<h1>InsightLab</h1>
+		<a class="contact-link" href="mailto:juan.manuel.torres@mi.unc.edu.ar">Contacto</a>
+	</header>
 
-    <!-- Contenedor principal del mapa -->
-    <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-        tabindex="0" style="position: relative;">
+	<main>
+		<section>
+			<h2>¡Bienvenido a InsightLab! Aquí encontrarás información detallada sobre las mejores aplicaciones y herramientas para inspirarte a conectar con la naturaleza, disfruta al máximo de tu aventura.</h2>
+			<ul>
+				<li>
+					<h3>Ventusky</h3>
+					<p>Ventusky es una aplicación innovadora que te permite visualizar datos meteorológicos de manera interactiva y en tiempo real. Es fácil de usar y tiene mapas animados que muestran distintos aspectos del clima como la velocidad del viento, temperatura, presión atmosférica y nubosidad. Puedes ajustar la velocidad de la animación y la escala de colores para personalizar tu experiencia. Es útil para planificar actividades que dependen del clima, como navegación, aviación, agricultura y turismo. ¡Con Ventusky estarás siempre un paso adelante del clima!</p>
+					<a href="https://www.ventusky.com/" target="_blank" class="earth-engine-button">Visitar Ventusky</a>
+					<div class="container">
+						<img class="image" src="ventusky2.png" alt="Descripción de la imagen 1">
+						<img class="image" src="ventusky1.png" alt="Descripción de la imagen 2">
+						<img class="image" src="ventusky3.png" alt="Descripción de la imagen 3">
+					</div>
+				</li>
+				<li>
+					<h3>Open Street Map</h3>
+					<p>OpenStreetMap, Es una plataforma colaborativa de mapeo digital de código abierto que se ha convertido en una herramienta esencial para la investigación en geociencias y programación.
 
-        <!-- Capa del mapa Leaflet -->
-        <div class="leaflet-pane leaflet-map-pane">
-
-            <!-- Capa de teselas (tiles) del mapa -->
-            <div class="leaflet-pane leaflet-tile-pane">
-                <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
-
-                    <!-- Contenedor de teselas animado -->
-                    <div class="leaflet-tile-container leaflet-zoom-animated"
-                        style="z-index: 17; transform: translate3d(178px, 235px, 0px) scale(0.25);">
+                        OpenStreetMap es una base de datos geográfica que permite la creación y edición de mapas por parte de cualquier persona en todo el mundo. A diferencia de los mapas comerciales, OpenStreetMap permite el acceso gratuito y la distribución de datos geográficos, lo que lo convierte en una herramienta valiosa para investigadores, empresas y organizaciones sin fines de lucro.
+                        
+                        La plataforma fue creada en 2004 y ha crecido rápidamente gracias a la colaboración de una comunidad de mapeadores voluntarios. Estos mapeadores utilizan herramientas de mapeo en línea para agregar información geográfica detallada sobre carreteras, edificios, ríos, montañas, parques, entre otros elementos en todo el mundo.
+                        
+                        Además, OpenStreetMap cuenta con una API (Interfaz de Programación de Aplicaciones) que permite a los desarrolladores de software crear aplicaciones basadas en datos geográficos, lo que amplía aún más las posibilidades de uso de la plataforma.
+                        
+                        En el campo de las geociencias, OpenStreetMap ha demostrado ser una fuente confiable de datos geográficos para la investigación en áreas como la climatología, la planificación urbana, la conservación de la biodiversidad, la gestión de desastres naturales, entre otras. Además, la plataforma ha sido utilizada en proyectos de mapeo participativo en países en desarrollo, lo que ha permitido a las comunidades locales tener un mayor control sobre la información geográfica que les afecta directamente.
+                        
+                        En el campo de la programación, OpenStreetMap es una plataforma de gran interés para los desarrolladores de aplicaciones que requieren datos geográficos precisos y actualizados. Al ser una fuente abierta y colaborativa, OpenStreetMap ofrece una alternativa a las plataformas de mapas comerciales, lo que puede ser beneficioso para empresas y organizaciones que buscan reducir costos.
+                        
+                        En resumen, OpenStreetMap es una plataforma de mapeo digital de código abierto que ha demostrado ser una herramienta valiosa para la investigación en geociencias y programación. Su enfoque colaborativo y su compromiso con la distribución gratuita de datos geográficos la convierten en una alternativa viable a las plataformas comerciales de mapas.</p>
+                    <a href="https://www.openstreetmap.org/" target="_blank" class="earth-engine-button">Visitar Open Street Map</a>
+					<div class="container">
+                        <img class="image" src="open1.png" alt="Imagen openstreetmap">
+					    <img class="image" src="open2.png" alt="Imagen openstreetmap">
+					    <img class="image" src="open3.png" alt="Imagen openstreetmap">
                     </div>
+				</li>
+                <li>
+					<h3>Gaia GPS</h3>
+					<p> GaiaGPS es una plataforma de mapeo en línea que utiliza tecnología GPS para proporcionar mapas precisos y detallados en tiempo real, y está diseñada específicamente para actividades al aire libre como senderismo y camping.
 
-                    <!-- Contenedor de teselas estático -->
-                    <div class="leaflet-tile-container leaflet-zoom-animated"
-                        style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);">
-                        <!-- Imágenes de teselas -->
-                        <img alt="" src="https://tile.openstreetmap.org/17/38508/49301.png"
-                            class="leaflet-tile leaflet-tile-loaded"
-                            style="width: 256px; height: 256px; transform: translate3d(215px, 1px, 0px); opacity: 1;">
-                        <!-- Agrega más imágenes según sea necesario -->
-                    </div>
+                        La plataforma permite a los usuarios acceder a mapas de alta calidad de todo el mundo, lo que les permite planificar rutas, hacer un seguimiento de su ubicación en tiempo real y compartir información de manera eficiente con otros miembros de su grupo. Además, la plataforma ofrece la posibilidad de guardar mapas sin conexión para acceder a ellos en áreas donde no hay conexión a internet. GaiaGPS también tiene aplicaciones prácticas en geología, cartografía y ciencias ambientales. Su código de programación avanzado ha sido utilizado en estudios científicos para mapear áreas inaccesibles, proporcionando información valiosa sobre la topografía y geología de nuestro planeta.</p>
+					<a href="https://www.gaiagps.com/map/" target="_blank" class="earth-engine-button">Visitar Gaia GPS</a>
+					<div class="container">
+						<img class="image" src="gaia1.png" alt="Imagen GaiaGPS">
+						<img class="image" src="gaia2.png" alt="Imagen GaiaGPS">
+						<img class="image" src="gaia3.png" alt="Imagen GaiaGPS">
+					</div>
+                </li>
+                <li>
+					<h3>Asterank y Galaxies</h3>
+					<p> Las aplicaciones web Asterank y Galaxies están revolucionando nuestra comprensión del universo. Asterank, permite a los usuarios explorar los datos de más de 600,000 asteroides conocidos en nuestro sistema solar, calculando su valor potencial en términos de recursos minerales y metales preciosos. Galaxies, por otro lado, proporciona una herramienta de visualización interactiva de las galaxias y cúmulos de galaxias cercanos, permitiendo a los astrónomos y científicos aficionados investigar la estructura y la dinámica de nuestro universo.
 
-                </div>
-            </div>
+                        Ambas aplicaciones hacen uso de técnicas avanzadas de programación y procesamiento de datos para ofrecer una experiencia de usuario fluida e interactiva. La plataforma de Asterank se basa en el lenguaje de programación JavaScript, mientras que Galaxies utiliza WebGL para renderizar visualizaciones 3D en tiempo real.</p>
+					<a href="http://www.asterank.com/galaxies/" target="_blank" class="earth-engine-button">Visitar Galaxies</a>
+					<div class="container">
+						<img class="image" src="gala1.png" alt="Imagen Galaxies">
+						<img class="image" src="gala2.png" alt="Imagen Galaxies">
+						<img class="image" src="gala3.png" alt="Imagen Galaxies">
+					</div>
+                </li>
+                <li>
+					<h3>ThePaleobiology Database</h3>
+					<p>Paleobiology Database (PaleoBioDB) es una base de datos global en línea que se utiliza para recopilar y proporcionar información sobre la biodiversidad pasada. Contiene una gran cantidad de información de alta calidad sobre fósiles, incluyendo su ubicación geográfica y temporal, su morfología y su clasificación taxonómica. La base de datos es una herramienta valiosa para los científicos y los entusiastas de la paleontología, ya que permite el acceso y la integración de datos de múltiples fuentes en un solo lugar.
 
-            <!-- Capa de superposición de imagen -->
-            <div class="leaflet-pane leaflet-overlay-pane">
-                <img class="leaflet-image-layer leaflet-zoom-animated leaflet-interactive"
-                    src="https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
-                    alt="Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection."
-                    style="z-index: 1; opacity: 0.8; width: 100%; height: 100%;">
-            </div>
+                        La Paleobiology Database es una plataforma de colaboración, y permite la contribución de datos por parte de científicos y aficionados de todo el mundo. La base de datos también cuenta con una interfaz de usuario intuitiva que permite la visualización de datos en 2D y 3D, y permite la descarga de datos para su análisis posterior.
+                        
+                        Además, la Paleobiology Database es una herramienta clave para la investigación en biología evolutiva y paleontología. Los datos contenidos en la base de datos pueden utilizarse para reconstruir la evolución de las especies a lo largo del tiempo, estudiar la distribución geográfica de los fósiles y comprender cómo la biodiversidad ha cambiado a lo largo de la historia de la vida en la Tierra.  </p>
+					<a href="https://paleobiodb.org/navigator/" target="_blank" class="earth-engine-button">Visitar PaleoBiologyDataBase</a>
+					<div class="container">
+						<img class="image" src="paleo1.png" alt="Imagen Galaxies">
+						<img class="image" src="paleo2.png" alt="Imagen Galaxies">
+						<img class="image" src="paleo3.png" alt="Imagen Galaxies">
+					</div>
+                </li>
 
-            <!-- Capas adicionales (sombra, marcadores, tooltip, popup, proxy) -->
-            <div class="leaflet-pane leaflet-shadow-pane"></div>
-            <div class="leaflet-pane leaflet-marker-pane"></div>
-            <div class="leaflet-pane leaflet-tooltip-pane"></div>
-            <div class="leaflet-pane leaflet-popup-pane"></div>
-            <div class="leaflet-proxy leaflet-zoom-animated"
-                style="transform: translate3d(9.85813e+06px, 1.26213e+07px, 0px) scale(65536);"></div>
 
-        </div>
 
-        <!-- Contenedor de controles del mapa -->
-        <div class="leaflet-control-container">
-            <div class="leaflet-top leaflet-left">
-                <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                    <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in"
-                        aria-disabled="false"><span aria-hidden="true">+</span></a>
-                    <a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out"
-                        aria-disabled="false"><span aria-hidden="true">−</span></a>
-                </div>
-            </div>
-            <div class="leaflet-top leaflet-right"></div>
-            <div class="leaflet-bottom leaflet-left"></div>
-            <div class="leaflet-bottom leaflet-right">
-                <div class="leaflet-control-attribution leaflet-control">
-                    <a href="https://leafletjs.com" title="A JavaScript library for interactive maps"><svg
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8"
-                            viewBox="0 0 12 8" class="leaflet-attribution-flag">
-                            <path fill="#4C7BE1" d="M0 0h12v4H0z"></path>
-                            <path fill="#FFD500" d="M0 4h12v3H0z"></path>
-                            <path fill="#E0BC00" d="M0 7h12v1H0z"></path>
-                        </svg> Leaflet</a>
-                    <span aria-hidden="true">|</span>
-                    <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap</a>
-                </div>
-            </div>
-        </div>
+			</ul>
+		
+	
+		</section>
 
-    </div>
 
-    <!-- Título -->
-    <h1 style="text-align: center; margin-top: 20px;">Leaflet Image Overlay Tutorial</h1>
-
-    <!-- Scripts adicionales -->
+	</main>
     <script>
-        const map = L.map('map').setView([37.8, -96], 4);
-
-        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        const imageUrl = 'https://maps.lib.utexas.edu/maps/historical/newark_nj_1922.jpg';
-        const errorOverlayUrl = 'https://cdn-icons-png.flaticon.com/512/110/110686.png';
-        const altText = 'Image of Newark, N.J. in 1922. Source: The University of Texas at Austin, UT Libraries Map Collection.';
-        const latLngBounds = L.latLngBounds([[40.799311, -74.118464], [40.68202047785919, -74.33]]);
-
-        const imageOverlay = L.imageOverlay(imageUrl, latLngBounds, {
-            opacity: 0.8,
-            errorOverlayUrl,
-            alt: altText,
-            interactive: true
-        }).addTo(map);
-
-        L.rectangle(latLngBounds).addTo(map);
-        map.fitBounds(latLngBounds);
+        const images = document.querySelectorAll("img");
+        images.forEach((image) => {
+          image.addEventListener("click", () => {
+            image.classList.toggle("expanded");
+          });
+        });
+      </script>
+	
+	<script
+	src="https://utteranc.es/client.js"
+	repo="InsightLaboratory/gestion-comentarioslab"
+	issue-term="pathname"
+	theme="github-light"
+	crossorigin="anonymous"
+	async>
     </script>
-
 </body>
 
+
+  
 </html>
-
-
